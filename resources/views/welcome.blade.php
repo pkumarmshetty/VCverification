@@ -4,12 +4,9 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>inji-verify-sdk</title>
-      <!-- Fonts -->
       <link rel="preconnect" href="https://fonts.bunny.net">
       <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-      <!-- In welcome.blade.php -->
       <script src="https://unpkg.com/@zxing/library@latest"></script>
-      <!-- Include Vite-built assets -->
       @vite(['resources/css/app.css', 'resources/js/app.js'])
       <style>
          body {
@@ -56,7 +53,6 @@
          border: 1px solid #4CAF50;
          border-radius: 4px;
          }
-         /* Style for loading or error messages */
          #result.loading {
          background-color: #fff3cd;
          color: #856404;
@@ -74,17 +70,16 @@
          padding: 10px;
          border-radius: 6px;
          font-family: monospace;
-         white-space: pre-wrap;      /* Allows wrapping of long lines */
-         word-break: break-word;     /* Breaks long words */
+         white-space: pre-wrap;     
+         word-break: break-word;    
          overflow-wrap: break-word;
          }
          #videoPreview {
-         width: 400px;
-         height: auto;
+         width: 300;
+         height: 300;
          border: 2px solid #444;
          margin-bottom: 10px;
          }
-         /* Style for form inputs and labels */
          form {
          width: 100%;
          margin: 0 auto;
@@ -120,15 +115,47 @@
          button:hover {
          background-color: #45a049;
          }
+         /* Tab Styles */
+         #tabs {
+         display: flex;
+         justify-content: center;
+         margin-bottom: 20px;
+         }
+         .tab-button {
+         padding: 10px 20px;
+         border: none;
+         background-color: #e0e0e0;
+         cursor: pointer;
+         border-radius: 4px;
+         font-weight: bold;
+         margin: 0 5px;
+         }
+         .tab-button.active {
+         background-color: #4caf50;
+         color: white;
+         }
       </style>
    </head>
    <body >
       <h1>Upload VC Credential</h1>
-      <div class="flex items-center justify-center">
+      <!-- Tabs -->
+      <div id="tabs">
+         <button id="tab-upload" class="tab-button active">Upload File</button>
+         <button id="tab-scan" class="tab-button">Scan QR</button>
+      </div>
+      <!-- File Upload Section -->
+      <div class="flex items-center justify-center" id="uploadSection">
          <input type="file" id="fileInput" accept="image/*" />
          <span id="statusIcon" style="margin-left: 10px;"></span>
       </div>
-      <!-- <pre id="jsonOutput">Loading...</pre> -->
+      <!-- QR Video Display -->
+      <div class="videoDisplay" id="scanSection">
+         <video id="videoPreview" autoplay></video>
+         
+         <div id="resultBox" style="margin-top: 10px;">QR code</div>
+         <button id="startScan">Start QR Scan</button>
+      </div>
+      <br>
       <form id="credentialForm">
          <div>
             <label for="studentId">Student ID:</label>
@@ -159,12 +186,31 @@
             <input type="text" id="type" name="type" value="">
          </div>
       </form>
-      <!-- <video id="videoPreview" width="400" height="auto" style="border: 2px solid #444;"></video>
-         <button id="startScan">Start Scan</button>
-         <pre id="resultBox">QR result will appear here...</pre>
-         <pre id="scanjsonOutput">Loading...</pre> -->
-      <!-- @if (Route::has('login'))
-         <div class="h-14.5 hidden lg:block"></div>
-         @endif -->
+      <script>
+         document.addEventListener("DOMContentLoaded", function () {
+           const tabUpload = document.getElementById("tab-upload");
+           const tabScan = document.getElementById("tab-scan");
+           const uploadSection = document.getElementById("uploadSection");
+           const scanSection = document.getElementById("scanSection");
+         
+           tabUpload.addEventListener("click", function () {
+             tabUpload.classList.add("active");
+             tabScan.classList.remove("active");
+             uploadSection.style.display = "flex";
+             scanSection.style.display = "none";
+           });
+         
+           tabScan.addEventListener("click", function () {
+             tabScan.classList.add("active");
+             tabUpload.classList.remove("active");
+             uploadSection.style.display = "none";
+             scanSection.style.display = "block";
+           });
+         
+           // Optional: Set default visibility
+           uploadSection.style.display = "flex";
+           scanSection.style.display = "none";
+         });
+      </script>
    </body>
 </html>
