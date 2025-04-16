@@ -14,9 +14,7 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
-       
         "@zxing/browser": "^0.1.5",
-        "inji-verify-sdk": "^1.0.31"
-       
+        "inji-verify-sdk": "^1.0.35"
     }
 }

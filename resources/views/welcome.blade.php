@@ -153,6 +153,7 @@
          <video id="videoPreview" autoplay></video>
          
          <div id="resultBox" style="margin-top: 10px;">QR code</div>
+         <div id="qrcodeResult" style="margin-top: 10px;"></div>
          <button id="startScan">Start QR Scan</button>
       </div>
       <br>

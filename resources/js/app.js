@@ -1,6 +1,6 @@
 import './bootstrap';
 
-import { vcVerification } from 'inji-verify-sdk';
+import { vcVerification,vcQrCodeVerification } from 'inji-verify-sdk';
 
 function resultView(response) {
   console.log("❌ Not a GraduationCredential");
@@ -109,8 +109,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log("Scanned QR outside try:", scannedText);
 
       try {
-        let response = await vcVerification(scannedText, 'https://injiverify.dpgongcp.com/v1/verify/vc-verification');
-        console.log("Raw response:", response);
+        let response = await vcQrCodeVerification(scannedText, 'https://injiverify.dpgongcp.com/v1/verify/vc-verification');
+        console.log("Raw response:", response.data.result);
+        if(response.data.result==="SUCCESS"){
+          document.getElementById("qrcodeResult").textContent = "✅";
+        }
         resultView(response);
       } catch (err) {
         console.error("Validation Error:", err);
