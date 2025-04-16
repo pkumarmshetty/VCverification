@@ -61,6 +61,106 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+# 🚀 Step-by-Step: Laravel +  on Windows
+
+## 1. 🛠 Create a Laravel Project
+
+Open PowerShell or CMD:
+
+```bash
+composer create-project laravel/laravel simple-validator-laravel
+cd simple-validator-laravel
+```
+
+Or using Laravel installer:
+
+```bash
+laravel new simple-validator-laravel
+cd simple-validator-laravel
+```
+
+---
+
+## 2. 📦 Install Node Modules
+
+```bash
+npm install
+```
+
+---
+
+## 3. 📥 Install Your NPM Package
+
+```bash
+npm install  inji-verify-sdk
+```
+
+---
+
+
+---
+
+## 5. 🔗 Import It in `resources/js/app.js`
+
+Open `resources/js/app.js` and add:
+
+```js
+import InjiVerify from 'inji-verify-sdk';
+```
+import {VCverification} from 'inji-verify-sdk';
+
+// Example usage:
+const fileInput = document.querySelector('input[type="file"]');
+fileInput.addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  const url = 'https://your-verification-endpoint.com/verify';
+
+  const result = await VCverification(file, url);
+  console.log(result);
+});
+---
+
+## 6. 🧪 Add Script in Blade Template
+
+Open `resources/views/welcome.blade.php` (or any Blade view) and add:
+
+```blade
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+```
+
+✅ This ensures Vite bundles and serves your script.
+
+---
+
+## 7. 🔥 Start Vite and Laravel
+
+In one terminal:
+
+```bash
+npm run dev
+```
+
+In another terminal:
+
+```bash
+php artisan serve
+```
+
+---
+
+## 8. ✅ Open Browser 
+
+Go to [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+
+For more information, check out the [Inji Verify SDK documentation](https://www.npmjs.com/package/inji-verify-sdk).
+
+---
+
+## 🧼 Optional: Using In React/Vue?
+
+If you're working with a React or Vue.js project, you can easily integrate the **inji-verify-sdk** in a similar way by importing the NPM package and using it in your components or Vue files.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
