@@ -134,6 +134,11 @@
          background-color: #4caf50;
          color: white;
          }
+         img, video {
+    max-width: 300px;
+    height: auto;
+}
+
       </style>
    </head>
    <body >

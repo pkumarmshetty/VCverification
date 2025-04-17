@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         let response = await vcQrCodeVerification(scannedText, 'https://injiverify.dpgongcp.com/v1/verify/vc-verification');
         console.log("Raw response:", response.data.result);
         if(response.data.result==="SUCCESS"){
-          document.getElementById("qrcodeResult").textContent = "✅";
+          document.getElementById("qrcodeResult").textContent = "valid credential ✅";
         }
         resultView(response);
       } catch (err) {
