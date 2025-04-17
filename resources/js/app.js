@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
     } catch (err) {
-      resultBox.textContent = "Error: " + err.message;
+      // resultBox.textContent = "Error: " + err.message;
       console.error("QR Scan Error:", err);
     }
 
